@@ -9,14 +9,15 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-so#p7fw!t2abr-ar4@_f4&sz058e)d3#!((c--ny+7&@8@-tzq'
+# --- AJUSTES DE SEGURIDAD PARA PRODUCCIÓN ---
+# En Vercel, es mejor usar variables de entorno para la Secret Key y el Debug
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-so#p7fw!t2abr-ar4@_f4&sz058e)d3#!((c--ny+7&@8@-tzq')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG debe ser False en producción (Vercel)
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+# Permitir el dominio de Vercel
+ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # INDISPENSABLE para archivos estáticos en Vercel
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -47,7 +49,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Para usar un base.html global en el futuro
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -55,7 +57,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media', # Acceso a MEDIA_URL en templates
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -65,6 +67,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
+# Nota: SQLite no es persistente en Vercel. Considera usar Postgres en el futuro.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -83,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-LANGUAGE_CODE = 'es-es' # Cambiado a español
+LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
@@ -91,15 +94,15 @@ USE_TZ = True
 
 # --- CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS (CSS, JS) ---
 STATIC_URL = 'static/'
-# Directorio donde Django buscará archivos estáticos globales (como tu style.css)
-STATICFILES_DIRS = [
-    BASE_DIR / "static", 
-]
-# Directorio donde se recopilarán los archivos para producción
+STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# Configuración de WhiteNoise para comprimir y cachear archivos estáticos
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# --- CONFIGURACIÓN DE ARCHIVOS MULTIMEDIA (IMÁGENES SUBIDAS) ---
+
+# --- CONFIGURACIÓN DE ARCHIVOS MULTIMEDIA ---
+# IMPORTANTE: En Vercel, los archivos subidos a /media/ desaparecen al reiniciar la instancia.
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -108,12 +111,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# --- CONFIGURACIÓN DE AUTENTICACIÓN (SOLUCIÓN ERROR 404) ---
-# Django necesita saber cómo se llama la ruta exacta para iniciar sesión
+# --- CONFIGURACIÓN DE AUTENTICACIÓN ---
 LOGIN_URL = 'accounts:login'
-
-# A dónde ir después de loguearse con éxito
-LOGIN_REDIRECT_URL = 'upload_panel'
-
-# A dónde ir después de cerrar sesión
+LOGIN_REDIRECT_URL = 'gallery_index' # Cambiado para que después de login veas las fotos
 LOGOUT_REDIRECT_URL = 'accounts:login'
