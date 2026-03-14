@@ -46,7 +46,41 @@
     </style>
     {% block extra_head %}{% endblock %}
 </head>
-<body>
+<body class="antialiased">
+
+    <nav class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-lg border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                
+                <a href="{% url 'accounts:login' %}" class="text-2xl font-black text-white tracking-tighter italic transition-transform hover:scale-105">
+                    MI<span class="text-indigo-500">GALERÍA</span>
+                </a>
+
+                <div class="flex items-center space-x-6">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'gallery_index' %}" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Panel</a>
+                        <a href="#" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Mi Perfil</a>
+                        
+                        
+                        <div class="h-5 w-px bg-slate-700"></div> 
+                        
+                        <form method="post" action="{% url 'accounts:logout' %}" class="m-0">
+                            {% csrf_token %}
+                            <button type="submit" class="text-sm font-black text-red-500 hover:text-red-400 tracking-widest uppercase transition-colors">
+                                Salir
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'accounts:login' %}" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Entrar</a>
+                        <a href="{% url 'accounts:register' %}" class="btn-indigo bg-indigo-600 hover:bg-indigo-500 text-sm py-2 px-5 rounded-lg">
+                            Registrarse
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
     <main class="max-w-6xl mx-auto px-4 py-8">
         {% block content %}{% endblock %}
     </main>

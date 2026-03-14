@@ -1,0 +1,44 @@
+/* --- ESTILOS DE AUTENTICACIÓN PRO --- */
+
+/* Inputs de texto: Fondo claro, letra negra */
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+    display: block !important;
+    width: 100% !important;
+    background-color: #f8fafc !important; /* Fondo blanco/gris muy claro */
+    border: 2px solid #334155 !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 0.75rem !important;
+    color: #0f172a !important; /* TEXTO NEGRO OSCURO */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* Efecto al escribir */
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+    border-color: #10b981 !important; /* Borde verde */
+    background-color: #ffffff !important; /* Blanco puro */
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Ocultar placeholders por defecto si molestan */
+.auth-form input::placeholder {
+    color: #94a3b8 !important;
+    font-weight: normal;
+}
+
+/* Estilo para el Checkbox */
+.auth-form input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #10b981; /* Color verde del check */
+    cursor: pointer;
+    margin-right: 0.75rem;
+}

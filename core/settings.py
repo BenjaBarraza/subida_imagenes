@@ -106,3 +106,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# --- CONFIGURACIÓN DE AUTENTICACIÓN (SOLUCIÓN ERROR 404) ---
+# Django necesita saber cómo se llama la ruta exacta para iniciar sesión
+LOGIN_URL = 'accounts:login'
+
+# A dónde ir después de loguearse con éxito
+LOGIN_REDIRECT_URL = 'upload_panel'
+
+# A dónde ir después de cerrar sesión
+LOGOUT_REDIRECT_URL = 'accounts:login'

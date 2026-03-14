@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Photo
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Solo para ver
 def gallery_view(request):
@@ -8,6 +9,7 @@ def gallery_view(request):
     return render(request, 'gallery/index.html', {'photos': photos})
 
 # Solo para gestionar (subir/ver lista de borrado)
+@login_required
 def upload_view(request):
     if request.method == 'POST' and request.FILES.get('image_file'):
         image = request.FILES['image_file']
