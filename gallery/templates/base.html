@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Galería{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #020617 !important;
+            color: #f1f5f9 !important;
+            min-height: 100vh;
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+        .glass-card {
+            background-color: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .input-dark {
+            width: 100%;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            color: white;
+            outline: none;
+        }
+        .btn-indigo {
+            background-color: #4f46e5;
+            color: white;
+            font-weight: bold;
+            padding: 0.6rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-indigo:hover { background-color: #4338ca; transform: scale(1.02); }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <script src="{% static 'gallery/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-20">
+    <div class="glass-card p-8">
+        <h2 class="text-3xl font-bold mb-8 text-center text-white">Acceso al Panel</h2>
+        
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium text-slate-400">Usuario</label>
+                <input type="text" name="username" required>
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-slate-400">Contraseña</label>
+                <input type="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="btn-indigo w-full bg-indigo-600 hover:bg-indigo-500 py-3 mt-4 text-lg">
+                Entrar
+            </button>
+        </form>
+
+        {% if form.errors %}
+            <div class="mt-4 p-3 bg-red-900/30 border border-red-800 rounded-xl text-center">
+                <p class="text-red-400 text-sm font-bold">Usuario o contraseña incorrectos.</p>
+            </div>
+        {% endif %}
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+            <p class="text-slate-400 text-sm">¿Aún no tienes cuenta? 
+                <a href="{% url 'accounts:register' %}" class="text-emerald-400 hover:text-emerald-300 font-bold transition-colors">Regístrate aquí</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

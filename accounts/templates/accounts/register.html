@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Crear Cuenta{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 mb-10">
+    <div class="glass-card p-8">
+        <h2 class="text-3xl font-bold mb-8 text-center text-white">Crear Cuenta</h2>
+        
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-slate-400">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <span class="helptext">{{ field.help_text }}</span>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <span class="errorlist">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn-indigo w-full bg-emerald-600 hover:bg-emerald-500 py-3 mt-6 text-lg">
+                Registrarme
+            </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+            <p class="text-slate-400 text-sm">¿Ya tienes cuenta? 
+                <a href="{% url 'accounts:login' %}" class="text-indigo-400 hover:text-indigo-300 font-bold transition-colors">Inicia Sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
