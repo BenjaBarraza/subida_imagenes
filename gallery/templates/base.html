@@ -12,7 +12,12 @@
             color: #f1f5f9 !important;
             min-height: 100vh;
             margin: 0;
+            display: flex;
+            flex-direction: column;
             font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+        }
+        main {
+            flex: 1;
         }
         .glass-card {
             background-color: #0f172a;
@@ -52,15 +57,13 @@
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex items-center justify-between h-16">
                 
-                <a href="{% url 'accounts:login' %}" class="text-2xl font-black text-white tracking-tighter italic transition-transform hover:scale-105">
+                <a href="{% url 'gallery_index' %}" class="text-2xl font-black text-white tracking-tighter italic transition-transform hover:scale-105">
                     MI<span class="text-indigo-500">GALERÍA</span>
                 </a>
 
                 <div class="flex items-center space-x-6">
                     {% if user.is_authenticated %}
-                        <a href="{% url 'gallery_index' %}" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Panel</a>
-                        <a href="#" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Mi Perfil</a>
-                        
+                        <a href="{% url 'gallery_index' %}" class="text-sm font-bold text-slate-300 hover:text-white transition-colors">Fotos</a>
                         
                         <div class="h-5 w-px bg-slate-700"></div> 
                         
@@ -81,9 +84,61 @@
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full">
         {% block content %}{% endblock %}
     </main>
+
+    <footer class="mt-20 border-t border-slate-900 bg-[#020617]">
+    
+    
+
+    <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+            
+            <div class="flex flex-col items-center space-y-4">
+                <a href="{% url 'gallery_index' %}" class="text-2xl font-black text-white tracking-tighter italic">
+                    MI<span class="text-indigo-500">GALERÍA</span>
+                </a>
+                <p class="text-slate-500 text-xs leading-relaxed max-w-[250px]">
+                    Plataforma robusta para la gestión de medios digitales, optimizada para ingeniería de software.
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center space-y-4">
+                <h4 class="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em]">Social</h4>
+                <div class="flex gap-6">
+                    <a href="https://github.com/" target="_blank" class="text-slate-400 hover:text-white transition-all text-sm font-bold flex flex-col items-center gap-1 group">
+                        <span class="text-xs uppercase tracking-widest">GitHub</span>
+                        <span class="h-0.5 w-0 bg-indigo-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-white transition-all text-sm font-bold flex flex-col items-center gap-1 group">
+                        <span class="text-xs uppercase tracking-widest">LinkedIn</span>
+                        <span class="h-0.5 w-0 bg-indigo-500 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center space-y-4">
+                <h4 class="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em]">Contacto</h4>
+                <div class="space-y-1">
+                    <a href="mailto:admin@tuproyecto.com" class="text-slate-300 hover:text-indigo-400 transition-colors font-bold text-sm tracking-tight block">
+                        admin@tuproyecto.com
+                    </a>
+                    <p class="text-slate-600 text-[10px] font-black uppercase tracking-widest">Santiago, Chile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 py-8 border-t border-slate-900/50 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-slate-600 text-[9px] font-black uppercase tracking-[0.4em] text-center md:text-left">
+            © 2026 MI GALERÍA. TODOS LOS DERECHOS RESERVADOS.
+        </p>
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group w-10 h-10 bg-slate-900/50 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-all border border-slate-800 hover:border-indigo-500">
+            <span class="text-slate-500 group-hover:text-white transition-colors">↑</span>
+        </button>
+    </div>
+</footer>
 
     <script src="{% static 'gallery/js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}
