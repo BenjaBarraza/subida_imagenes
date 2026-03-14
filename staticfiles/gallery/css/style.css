@@ -1,0 +1,43 @@
+/* Estilos Globales para Galería Dark */
+
+@layer base {
+    body {
+        @apply bg-slate-950 text-slate-100 min-h-screen transition-colors duration-300;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Scrollbar personalizada al estilo Dark */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        @apply bg-slate-900;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-slate-700 rounded-full hover:bg-indigo-500 transition-colors;
+    }
+}
+
+@layer components {
+    /* Clase para los contenedores principales */
+    .main-container {
+        @apply max-w-6xl mx-auto px-4 py-8;
+    }
+
+    /* Clase para tarjetas (Cards) */
+    .glass-card {
+        @apply bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl;
+    }
+
+    /* Clase para botones primarios */
+    .btn-primary {
+        @apply bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-xl 
+               shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2;
+    }
+
+    /* Estilo para los inputs */
+    .form-input {
+        @apply w-full bg-slate-800 border border-slate-700 p-3 rounded-xl 
+               focus:ring-2 focus:ring-indigo-500 outline-none text-white transition-all;
+    }
+}

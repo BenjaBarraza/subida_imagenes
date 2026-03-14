@@ -1,0 +1,74 @@
+/* --- ESTILOS EXCLUSIVOS PARA EL LOGIN PRO --- */
+
+/* Contenedor del formulario */
+.auth-form {
+    width: 100%;
+}
+
+/* Inputs de texto y contraseña: Fondo claro, letra negra */
+.auth-form input[type="text"],
+.auth-form input[type="password"],
+.auth-form input[type="email"] {
+    display: block !important;
+    width: 100% !important;
+    background-color: #f8fafc !important; /* Fondo blanco/gris muy claro */
+    border: 2px solid #334155 !important; /* Borde oscuro base */
+    padding: 0.875rem 1rem !important;
+    border-radius: 0.75rem !important;
+    color: #0f172a !important; /* Texto negro oscuro para máxima legibilidad */
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    outline: none !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+}
+
+/* Efecto Focus al escribir (Tonos Indigo para el Login) */
+.auth-form input[type="text"]:focus,
+.auth-form input[type="password"]:focus,
+.auth-form input[type="email"]:focus {
+    border-color: #6366f1 !important; /* Borde Indigo */
+    background-color: #ffffff !important; /* Blanco puro */
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2) !important; /* Resplandor Indigo */
+}
+
+/* Estilo de los placeholders */
+.auth-form input::placeholder {
+    color: #94a3b8 !important;
+    font-weight: normal;
+}
+
+/* Etiquetas (Labels) encima de los inputs */
+.form-group label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 700; /* font-bold */
+    color: #cbd5e1; /* text-slate-300 */
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em; /* tracking-wide */
+}
+
+/* Separación entre los campos del formulario */
+.form-group {
+    margin-bottom: 1.25rem; /* space-y-5 equivalente */
+}
+
+/* Estilo base para listas de errores nativas de Django (por si acaso) */
+.auth-form ul.errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.auth-form ul.errorlist li {
+    color: #f87171;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background-color: rgba(127, 29, 29, 0.2);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid rgba(153, 27, 27, 0.5);
+    margin-top: 0.5rem;
+}
