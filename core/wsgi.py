@@ -8,9 +8,12 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
 """
 
 import os
-
 from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
-app = get_wsgi_application()
+# Esta es la que busca Django para el runserver local
+application = get_wsgi_application()
+
+# Esta es la que busca Vercel para el despliegue
+app = application
